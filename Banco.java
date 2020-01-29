@@ -5,6 +5,8 @@ public class Banco {
     
     public static Conta contas[] = new Conta[10];
     public static int count=0;
+    public static int contaAtual;
+    public static int aux;
     
     public static void iniciaVetor(){
          for(int i=0;i<10;i++){
@@ -42,17 +44,26 @@ public class Banco {
     }
     
     public static void verificaEntrada(String nome, String senha){
-        
+        aux=0;
         for(int i=0;i<10;i++){
          
             if(contas[i].getDonoConta().equals(nome) &&
                     contas[i].getSenhaConta().equals(senha)){
-            
+                contaAtual=i;
                 System.out.println("Usuário existe");
+                aux=1;
             }
-        }
-        
-        
+        }  
+    }
+    
+    public static void saque(float valor){
+        contas[contaAtual].sacar(valor);
+        contas[contaAtual].status();
+    }
+    
+    public static void deposito(float valor){
+        contas[contaAtual].depositar(valor);
+        contas[contaAtual].status();
     }
     
     public static void main(String[] args) {
@@ -65,98 +76,7 @@ public class Banco {
         float valor;
         String nome;
         iniciaVetor();
-        telainicio.setVisible(true);
-        
-        
-       
-        
-        
-        do{
-        System.out.println("Bem vindo ao Banco do Cauê");
-        System.out.println("Oque gostaria de fazer?");
-        System.out.println("0 -> Sair");
-        System.out.println("1 -> Abrir conta");
-        System.out.println("2 -> Encerrar Conta");
-        System.out.println("3 -> Sacar");
-        System.out.println("4 -> Depositar");
-        System.out.println("5 ->Informações da conta");
-        op=teclado.nextInt();
-        teclado.nextLine();
-        
-        
-        if(op == 1 && count < 10){
-         
-            System.out.println("Informe seu nome, por favor.");
-            nome=teclado.nextLine();
-            do{
-                System.out.println("Qual tipo de conta deseja abrir?");
-                System.out.println("1 -> Corrente");
-                System.out.println("2 -> Poupança");
-                opConta=teclado.nextInt();
-            }while(opConta < 1 || opConta>2);
-            
-            if(opConta==1){
-                
-                //Conta c = new Conta();
-                contas[count].setNumConta(count);
-                contas[count].setTipoConta("Corrente");
-                contas[count].setDonoConta(nome);
-                contas[count].setStatusConta(true);
-                contas[count].setSaldoConta(50);
-                contas[count].status();
-            }
-            
-            else if(opConta==2){
-                
-                //Conta c = new Conta();
-                contas[count].setNumConta(count);
-                contas[count].setTipoConta("Poupança");
-                contas[count].setDonoConta(nome);
-                contas[count].setStatusConta(true);
-                contas[count].setSaldoConta(150);
-                contas[count].status();
-                
-            }    
-            count++;
-        }
-        
-        else if(op==2){
-            
-            System.out.println("Qual conta deseja encerrar?");
-            numConta= teclado.nextInt();
-            if(contas[numConta].getSaldoConta() == 0){
-                System.out.println("Conta Encerrada");
-                contas[numConta].setStatusConta(false);
-            }
-            else System.out.println("Impossivel encerrar a conta");
-            
-        }
-        
-        else if(op==3){
-            System.out.println("De qual conta deseja sacar?");
-            numConta= teclado.nextInt();
-            System.out.println("Quanto deseja sacar?");
-            valor=teclado.nextFloat();
-            contas[numConta].sacar(valor);
-        }
-        
-        else if(op ==4){
-            System.out.println("De qual conta deseja depositar?");
-            numConta= teclado.nextInt();
-            System.out.println("Quanto deseja depositar?");
-            valor=teclado.nextFloat();
-            contas[numConta].depositar(valor);
-        }
-        
-        else if(op==5){
-            System.out.println("De qual conta deseja ver status?");
-            numConta= teclado.nextInt();
-            contas[numConta].status();
-        }
-        
-        else if(op==0) break;
-        
-        }while(op !=0);
-        
+        telainicio.setVisible(true);       
     }
+    
 }

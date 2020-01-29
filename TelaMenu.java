@@ -10,6 +10,8 @@
  */
 public class TelaMenu extends javax.swing.JFrame {
 
+    public static float quantSaque;
+    public static float quantDeposito;
     /**
      * Creates new form TelaMenu
      */
@@ -27,25 +29,50 @@ public class TelaMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        BSaque = new javax.swing.JButton();
+        BDeposito = new javax.swing.JButton();
+        BInfosa = new javax.swing.JButton();
+        BEncerrar = new javax.swing.JButton();
+        TSaque = new javax.swing.JTextField();
+        TDeposito = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Oque Fazer?");
 
-        jButton1.setText("Sacar");
-
-        jButton2.setText("Depositar");
-
-        jButton3.setText("Infos da Conta");
-
-        jButton4.setText("Encerrar Conta");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BSaque.setText("Sacar");
+        BSaque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BSaqueActionPerformed(evt);
+            }
+        });
+
+        BDeposito.setText("Depositar");
+        BDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BDepositoActionPerformed(evt);
+            }
+        });
+
+        BInfosa.setText("Infos da Conta");
+        BInfosa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BInfosaActionPerformed(evt);
+            }
+        });
+
+        BEncerrar.setText("Encerrar Conta");
+        BEncerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEncerrarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -53,18 +80,29 @@ public class TelaMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 151, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(144, 144, 144))
             .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BEncerrar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BInfosa))))
+                .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,22 +110,54 @@ public class TelaMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(48, 48, 48)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BSaque)
+                    .addComponent(TSaque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jButton2)
-                .addGap(30, 30, 30)
-                .addComponent(jButton3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BDeposito)
+                    .addComponent(TDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BInfosa)
                 .addGap(28, 28, 28)
-                .addComponent(jButton4)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addComponent(BEncerrar)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void BEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEncerrarActionPerformed
+        int aux = Banco.contaAtual;
+        Banco.contas[aux].setStatusConta(false);
+    }//GEN-LAST:event_BEncerrarActionPerformed
+
+    private void BSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSaqueActionPerformed
+        
+        Banco.saque(Float.parseFloat(TSaque.getText()));
+   
+    }//GEN-LAST:event_BSaqueActionPerformed
+
+    private void BDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDepositoActionPerformed
+        Banco.deposito(Float.parseFloat(TDeposito.getText()));
+    }//GEN-LAST:event_BDepositoActionPerformed
+
+    private void BInfosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BInfosaActionPerformed
+        
+        
+        this.setVisible(false);
+        TelaInfos telainfo = new TelaInfos();
+        
+        telainfo.setVisible(true);
+    }//GEN-LAST:event_BInfosaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        TelaInicio telainicio = new TelaInicio();
+        telainicio.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,16 +189,21 @@ public class TelaMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new TelaMenu().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BDeposito;
+    private javax.swing.JButton BEncerrar;
+    private javax.swing.JButton BInfosa;
+    private javax.swing.JButton BSaque;
+    private javax.swing.JTextField TDeposito;
+    private javax.swing.JTextField TSaque;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

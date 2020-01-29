@@ -108,9 +108,22 @@ public class TelaEntrar extends javax.swing.JFrame {
         String senha =TSenha.getText();
         Banco.verificaEntrada(nome,senha);
         
-        this.setVisible(false);
-        TelaMenu telamenu = new TelaMenu();
-        telamenu.setVisible(true);
+        if(Banco.aux==1){
+        
+            this.setVisible(false);
+            TelaMenu telamenu = new TelaMenu();
+        
+            telamenu.setVisible(true);
+        }
+        else{
+        
+            this.setVisible(false);
+            TelaInicio telainicio = new TelaInicio();
+        
+            telainicio.setVisible(true);
+        }
+        
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -147,7 +160,8 @@ public class TelaEntrar extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LNome;
     private javax.swing.JLabel LSenha;
